@@ -7,118 +7,119 @@
 int calcSum(int arr[], int n)
 {
     int sum = 0;
-    for (int i = 0; i < n; i++) 
+    int i = 0;
+    while (i < n)
     {
-        sum += arr[i];
+        sum = sum + arr[i];
+        i++;
     }
     return sum;
 }
 
 int findMax(int arr[], int n)
 {
-    if (n == 0) 
+    int maximo = arr[0];
+    int i = 1;
+    while (i < n)
     {
-        return -1;
-    }
-    int max = arr[0];
-    for (int i = 1; i < n; i++) 
-    {
-        if (arr[i] > max) 
+        if (arr[i] > maximo)
         {
-            max = arr[i];
+            maximo = arr[i];
         }
+        i++;
     }
-    return max;
-
+    return maximo;
 }
 
 float calcAverage(int arr[], int n)
 {
-    float average = 0.0f; //colaboracion con IA
-    if (n > 0) 
+    float promedio = 0.0f;
+    if (n != 0)
     {
-        average = (float)calcSum(arr, n) / n;
+        int suma = calcSum(arr, n);
+        promedio = (float)suma / (float)n;
     }
-    return average;
+    return promedio;
 }
 
 int countEvens(int arr[], int n)
 {
-    int count = 0;
-    for (int i = 0; i < n; i++) {
-        if (arr[i] % 2 == 0) 
-        {
-            count++;
-        }
+    int contador = 0;
+    int i = 0;
+    while (i < n)
+    {
+        contador += (arr[i] % 2 == 0) ? 1 : 0;
+        i++;
     }
-    return count;
+    return contador;
 }
 
 int sumFirstLast(int arr[], int n)
 {
-    int sum = 0;
-    if (n > 0) 
+    int suma = 0;
+    if (n > 0)
     {
-        sum = arr[0] + arr[n - 1];
+        int primero = arr[0];
+        int ultimo = arr[n - 1];
+        suma = primero + ultimo;
     }
-    return sum;
-
+    return suma;
 }
 
 int findMin(int arr[], int n)
 {
-    if (n == 0) 
+    int minimo = arr[0];
+    int i = 1;
+    while (i < n)
     {
-        return -1;
-    }
-    int min = arr[0];
-    for (int i = 1; i < n; i++) 
-    {
-        if (arr[i] < min) 
+        if (arr[i] < minimo)
         {
-            min = arr[i];
+            minimo = arr[i];
         }
+        i++;
     }
-    return min;
+    return minimo;
 }
 
 int subtractArraysSum(int a[], int b[], int n)
 {
-    int sum = 0;
-    for (int i = 0; i < n; i++) 
+    int restaTotal = 0;
+    int i = 0;
+    do
     {
-        sum += (a[i] - b[i]);
-    }
-    return sum;
+        if (i < n)
+        {
+            restaTotal = restaTotal + (a[i] - b[i]);
+        }
+        i++;
+    } while (i < n);
+    return restaTotal;
 }
 
 int mergeArraysSum(int a[], int n1, int b[], int n2)
 {
-    int sum = 0;
-    for (int i = 0; i < n1; i++) 
+    int sumaTotal = 0;
+    int i = 0;
+    for (; i < n1; i++)
     {
-        sum += a[i];
+        sumaTotal += a[i];
     }
-    for (int i = 0; i < n2; i++) 
+    i = 0;
+    for (; i < n2; i++)
     {
-        sum += b[i];
+        sumaTotal += b[i];
     }
-    return sum;
+    return sumaTotal;
 }
 
 int productArray(int arr[], int n)
 {
-    if (n == 0) 
+    int producto = (n == 0) ? 0 : 1;
+    for (int i = 0; i < n; i++)
     {
-        return 0;
+        producto = producto * arr[i];
     }
-    int product = 1;
-    for (int i = 0; i < n; i++) 
-    {
-
-        product *= arr[i];
-    }
-    return product;
+    return producto;
 }
 
 // -------------------------------
@@ -127,14 +128,16 @@ int productArray(int arr[], int n)
 
 void calcSumAverage(int arr[], int n, int *sum, float *average)
 {
-    if (n == 0)
+    int sumaLocal = 0;
+    float promedioLocal = 0.0f;
+
+    if (n > 0)
     {
-        *sum = 0;
-        *average = 0.0f;//Colaboracion con IA
+        sumaLocal = calcSum(arr, n);
+        promedioLocal = (float)sumaLocal / (float)n;
     }
-    else
-    {
-        *sum = calcSum(arr, n);
-        *average = (float)(*sum) / n;
-    }
+
+    *sum = sumaLocal;
+    *average = promedioLocal;
 }
+
